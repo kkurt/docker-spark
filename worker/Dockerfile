@@ -1,6 +1,6 @@
-FROM bde2020/spark-base:3.3.0-hadoop3.3
+FROM kkurt/spark3cluster
 
-LABEL maintainer="Gezim Sejdiu <g.sejdiu@gmail.com>, Giannis Mouchakis <gmouchakis@gmail.com>"
+LABEL maintainer="Kursat Kurt <kursat@kursatkurt.com>"
 
 COPY worker.sh /
 
@@ -10,4 +10,6 @@ ENV SPARK_MASTER "spark://spark-master:7077"
 
 EXPOSE 8081
 
+## Should be coipe all needed JAR files into sparkJar
+COPY cd sparkJars/* ./spark/jars/
 CMD ["/bin/bash", "/worker.sh"]

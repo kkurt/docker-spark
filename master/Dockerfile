@@ -1,6 +1,6 @@
-FROM bde2020/spark-base:3.3.0-hadoop3.3
+FROM kkurt/spark3cluster
 
-LABEL maintainer="Gezim Sejdiu <g.sejdiu@gmail.com>, Giannis Mouchakis <gmouchakis@gmail.com>"
+LABEL maintainer="Kursat Kurt <kursat@kursatkurt.com>"
 
 COPY master.sh /
 

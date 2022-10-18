@@ -1,4 +1,4 @@
-FROM kkurt/spark3cluster
+FROM kkurt/spark3-cluster
 
 LABEL maintainer="Kursat Kurt <kursat@kursatkurt.com>"
 
@@ -11,5 +11,5 @@ ENV SPARK_MASTER "spark://spark-master:7077"
 EXPOSE 8081
 
 ## Should be coipe all needed JAR files into sparkJar
-COPY cd sparkJars/* ./spark/jars/
+COPY sparkJars/* ./spark/jars/
 CMD ["/bin/bash", "/worker.sh"]

@@ -1,4 +1,4 @@
-FROM kkurt/spark3cluster
+FROM kkurt/spark3-cluster
 
 LABEL maintainer="Kursat Kurt <kursat@kursatkurt.com>"
 

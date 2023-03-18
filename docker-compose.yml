@@ -8,6 +8,7 @@ services:
       - "7077:7077"
     environment:
       - INIT_DAEMON_STEP=setup_spark
+      - SPARK_DRIVER_MEMORY=2G
   spark-worker-1:
     image: kkurt/spark3-cluster-worker
     container_name: spark-worker-1
@@ -17,10 +18,10 @@ services:
       - "8081:8081"
     environment:
       - SPARK_MASTER=spark://spark-master:7077
-      - SPARK_WORKER_CORES=2
-      - SPARK_WORKER_MEMORY=1G
-      - SPARK_DRIVER_MEMORY=1G
-      - SPARK_EXECUTOR_MEMORY=1G
+      - SPARK_WORKER_CORES=4
+      - SPARK_WORKER_MEMORY=2G
+      - SPARK_DRIVER_MEMORY=2G
+      - SPARK_EXECUTOR_MEMORY=2G
       - SPARK_LOCAL_IP=spark-worker-1
       - SPARK_RPC_AUTHENTICATION_ENABLED=no
       - SPARK_RPC_ENCRYPTION_ENABLED=no
@@ -28,6 +29,7 @@ services:
       - SPARK_SSL_ENABLED=no
     volumes:
       - ./conf/log4j2.properties:/opt/spark/conf/log4j2.properties
+      - /c/SparkShared:/SparkShared
   spark-worker-2:
     image: kkurt/spark3-cluster-worker
     container_name: spark-worker-2
@@ -37,10 +39,10 @@ services:
       - "8082:8081"
     environment:
       - SPARK_MASTER=spark://spark-master:7077
-      - SPARK_WORKER_CORES=2
-      - SPARK_WORKER_MEMORY=1G
-      - SPARK_DRIVER_MEMORY=1G
-      - SPARK_EXECUTOR_MEMORY=1G
+      - SPARK_WORKER_CORES=4
+      - SPARK_WORKER_MEMORY=2G
+      - SPARK_DRIVER_MEMORY=2G
+      - SPARK_EXECUTOR_MEMORY=2G
       - SPARK_LOCAL_IP=spark-worker-2
       - SPARK_RPC_AUTHENTICATION_ENABLED=no
       - SPARK_RPC_ENCRYPTION_ENABLED=no
@@ -48,3 +50,25 @@ services:
       - SPARK_SSL_ENABLED=no
     volumes:
       - ./conf/log4j2.properties:/opt/spark/conf/log4j2.properties
+      - /c/SparkShared:/SparkShared
+  spark-worker-3:
+    image: kkurt/spark3-cluster-worker
+    container_name: spark-worker-3
+    depends_on:
+      - spark-master
+    ports:
+      - "8083:8081"
+    environment:
+      - SPARK_MASTER=spark://spark-master:7077
+      - SPARK_WORKER_CORES=4
+      - SPARK_WORKER_MEMORY=2G
+      - SPARK_DRIVER_MEMORY=2G
+      - SPARK_EXECUTOR_MEMORY=2G
+      - SPARK_LOCAL_IP=spark-worker-3
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+    volumes:
+      - ./conf/log4j2.properties:/opt/spark/conf/log4j2.properties
+      - /c/SparkShared:/SparkShared

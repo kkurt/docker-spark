@@ -7,7 +7,7 @@ ENV INIT_DAEMON_BASE_URI http://identifier/init-daemon
 ENV INIT_DAEMON_STEP spark_master_init
 
 ENV BASE_URL=https://archive.apache.org/dist/spark/
-ENV SPARK_VERSION=3.3.0
+ENV SPARK_VERSION=3.3.2
 ENV HADOOP_VERSION=3
 ENV SCALA_VERSION=2.13
 
@@ -20,7 +20,7 @@ COPY finish-step.sh /
 
 #COPY bde-spark.css /css/org/apache/spark/ui/static/timeline-view.css
 
-RUN apk add openjdk11 --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
+#RUN apk add openjdk11 --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
 
 #RUN apk add --no-cache curl bash openjdk8-jre python3 py-pip nss libc6-compat coreutils procps \
 #RUN apk add curl bash openjdk11-jdk python3 py-pip nss libc6-compat coreutils procps \
